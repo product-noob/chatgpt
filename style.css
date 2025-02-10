@@ -1,0 +1,309 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    color: #202123;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center; /* Center the container horizontally */
+    align-items: stretch;     /* Stretch items to container's height */
+    height: 100vh;
+    overflow: hidden; /* Prevent scrollbars on body */
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 1920px; /* Optional: set a max width for larger screens */
+    height: 100vh;
+    overflow: hidden;
+}
+
+#sidebar {
+    width: 280px; /* Adjust sidebar width as needed */
+    background-color: #ececec; /* Light gray sidebar background */
+    border-right: 1px solid #d9d9d9;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Enable vertical scroll if content overflows */
+    height: 100%; /* Ensure sidebar takes full container height */
+}
+
+.sidebar-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #202123;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.sidebar-section {
+    margin-bottom: 20px;
+}
+
+.sidebar-section h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #202123;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.select-container {
+    position: relative; /* For custom select arrow */
+}
+
+#sidebar select {
+    width: 100%;
+    padding: 8px 30px 8px 10px; /* Extra right padding for arrow */
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    background-color: white;
+    appearance: none; /* Remove default appearance */
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none; /* For Firefox */
+    font-size: 1rem;
+    color: #202123;
+    cursor: pointer;
+}
+
+/* Custom arrow for select */
+.select-container::after {
+    content: '\25BC'; /* Unicode down arrow */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #777;
+    pointer-events: none; /* Make sure it doesn't interfere with clicks */
+}
+
+#sidebar select:focus {
+    outline: none;
+    border-color: #4285f4; /* Example focus border color */
+    box-shadow: 0 0 0 1px #4285f4; /* Example focus box shadow */
+}
+
+
+#new-prompt-area {
+    margin-top: 10px;
+}
+
+#new-prompt-area input[type="text"],
+#new-prompt-area textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+#new-prompt-area textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+#new-prompt-area button, #sidebar .reset-button-container button {
+    background-color: #4285f4; /* Google blue */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#new-prompt-area button:hover, #sidebar .reset-button-container button:hover {
+    background-color: #3367d6;
+}
+
+.slider-group {
+    margin-bottom: 15px;
+}
+
+.slider-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #202123;
+}
+
+#sidebar input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none; /* Override default CSS styles */
+    appearance: none;
+    height: 8px;
+    background: #d3d3d3;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+#sidebar input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #4285f4;
+    cursor: pointer;
+}
+
+#sidebar input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #4285f4;
+    cursor: pointer;
+}
+
+#sidebar .reset-button-container {
+    margin-top: auto; /* Push reset button to the bottom */
+}
+#sidebar .reset-button-container button {
+    background-color: #db4437; /* Google red */
+}
+#sidebar .reset-button-container button:hover {
+    background-color: #c53929;
+}
+
+
+/* Chat Container Styles */
+#chat-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff; /* White chat area background */
+    border-left: 1px solid #d9d9d9;
+    height: 100%;
+}
+
+.chat-header {
+    padding: 15px 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #202123;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+#chat-window {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#input-area {
+    padding: 20px;
+    border-top: 1px solid #d9d9d9;
+    display: flex;
+    align-items: center;
+}
+
+#user-input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-right: 10px;
+    outline: none; /* Remove default focus outline */
+}
+#user-input:focus {
+    border-color: #4285f4; /* Focus border color */
+    box-shadow: 0 0 0 1px #4285f4; /* Focus box shadow */
+}
+
+
+#send-button {
+    background-color: #34a853; /* Google green */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center; /* Vertically align icon and text */
+    gap: 5px; /* Space between icon and text */
+}
+
+#send-button:hover {
+    background-color: #1e8e3e;
+}
+
+
+.message {
+    margin-bottom: 15px;
+    display: flex;
+    clear: both;
+}
+
+.user-message {
+    justify-content: flex-end;
+}
+
+.assistant-message {
+    justify-content: flex-start;
+}
+
+.message-content {
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.user-message .message-content {
+    background-color: #e2eafc; /* Light blue for user messages */
+    color: #202123;
+    float: right;
+    border: 1px solid #d9d9d9; /* Optional: Add border for user message bubbles */
+}
+
+.assistant-message .message-content {
+    background-color: #f1f3f4; /* Light gray for assistant messages */
+    color: #202123;
+    float: left;
+    border: 1px solid #d9d9d9; /* Optional: Add border for assistant message bubbles */
+}
+
+/* Adjust message spacing from edges */
+.message.user-message {
+    margin-left: auto;
+    margin-right: 0; /* User messages aligned to right */
+}
+
+.message.assistant-message {
+    margin-right: auto;
+    margin-left: 0; /* Assistant messages aligned to left */
+}
+
+
+/* Thinking spinner */
+.thinking-message .message-content {
+    display: flex;
+    align-items: center;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #4285f4;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    animation: spin 1s linear infinite;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
