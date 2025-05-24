@@ -1,0 +1,72 @@
+messages:
+  - role: system
+    content: You are a helpful assistant that breaks down action items from a meeting
+  - role: user
+    content: 'Pull out the action items from this meeting transcript: {{input}}'
+model: openai/gpt-4o
+testData:
+  - input: >-
+      Person A: Hey! Long time no see. How have you been?
+
+
+      Person B: Hey! I know, right? I’ve been good, just super busy with work
+      lately. How about you?
+
+
+      Person A: Pretty much the same. Work’s been hectic, but I’m trying to
+      squeeze in some time for myself here and there.
+
+
+      Person B: That’s good to hear. Have you done anything fun recently?
+
+
+      Person A: Yeah, actually! I went hiking last weekend. It was so refreshing
+      to be out in nature for a change.
+
+
+      Person B: Oh, nice! Where did you go?
+
+
+      Person A: We went to the Green Valley trail. It’s about an hour’s drive
+      from here. The weather was perfect, and the views were amazing.
+
+
+      Person B: That sounds awesome. I’ve been meaning to go hiking too, but I
+      keep putting it off.
+
+
+      Person A: You should definitely go! Maybe we can plan a trip together
+      sometime.
+
+
+      Person B: Yeah, I’d love that. Let’s pick a weekend and make it happen.
+
+
+      Person A: Sounds like a plan. I’ll check my calendar and text you later.
+
+
+      Person B: Cool. Looking forward to it!
+    expected: ''
+evaluators:
+  - name: Groundedness
+    uses: github/groundedness
+  - name: Evaluator 1
+    llm:
+      modelId: 'azureml://registries/azure-openai/models/gpt-4o-mini/versions/2024-07-18'
+      prompt: >
+        Compare if the summary generated from this transcript:  {{input}}. Here
+        is the summary . 
+
+        Your output should only be YES or NO in its own line.
+
+
+        <output>
+
+        {{completion}} 
+
+        </output>
+      choices:
+        - choice: 'YES'
+          score: 1
+        - choice: 'NO'
+          score: 0
